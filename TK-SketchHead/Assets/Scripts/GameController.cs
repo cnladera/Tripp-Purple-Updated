@@ -8,7 +8,16 @@ public class GameController : MonoBehaviour
     [Header("Platform Object")]
     public GameObject platform;
 
-    // Start is called before the first frame update
+    [Header("Game Over UI Canvas Object")]
+    public GameObject gameOverCanvas;
+
+    float pos = 0;
+
+    public void GameOver()
+    {
+        gameOverCanvas.SetActive(true);
+    }
+
     void Start()
     {
         for(int i = 0; i < 1000; i++)
@@ -16,15 +25,13 @@ public class GameController : MonoBehaviour
             SpawnPlatforms();
         }
     }
-
-    // Update is called once per frame
     void Update()
     {
 
     }
-
     void SpawnPlatforms()
     {
-        Instantiate(platform, new Vector3(Random.value * 10 - 5f, pos))
+        Instantiate(platform, new Vector3(Random.value * 10 - 5f, pos, 0.5f), Quaternion.identity);
+        pos += 2.5f;
     }
 }
